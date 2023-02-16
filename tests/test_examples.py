@@ -1305,6 +1305,26 @@ class TestExamples(unittest.TestCase):
             "2periods_new_build_simple_prm_2loadzones_newtx_w_transfers", objective
         )
 
+    def test_example_test_new_solar_itc(self):
+        """
+        Check validation and objective function value of
+        "test_new_solar_itc" example
+        :return:
+        """
+
+        self.check_validation("test_new_solar_itc")
+        self.run_and_check_objective("test_new_solar_itc", -3796301348804.993)
+
+    def test_example_test_new_build_storage_itc(self):
+        """
+        Check validation and objective function value of
+        "test_new_build_storage" example
+        :return:
+        """
+
+        self.check_validation("test_new_build_storage_itc")
+        self.run_and_check_objective("test_new_build_storage_itc", -4484590199.92)
+
     @classmethod
     def tearDownClass(cls):
         os.remove(DB_PATH)
