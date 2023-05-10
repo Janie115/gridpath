@@ -551,9 +551,9 @@ def export_results(scenario_directory, subproblem, stage, m, d):
                     value(m.Curtailment_Cost[p, tmp])
                     if p in m.CURTAILMENT_COST_PRJS
                     else None,
-                    value(m.SOC_Penalty_Cost[p, tmp])
-                    if p in m.SOC_PENALTY_COST_PRJS
-                    else None,
+                    # value(m.SOC_Penalty_Cost[p, tmp])
+                    # if p in m.SOC_PENALTY_COST_PRJS
+                    # else None,
                 ]
             )
 
