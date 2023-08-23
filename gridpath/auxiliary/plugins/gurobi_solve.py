@@ -43,6 +43,10 @@ def main(args=None):
             c.CTag = str(c)[15:-2]
 
         model.setParam(gurobipy.GRB.Param.JSONSolDetail, 1)
+        model.setParam('Threads', 16)
+        model.setParam('Method', 2)
+        model.setParam('DualReductions', 0)
+        # model.setParam('InfUnbdInfo', 1)
         model.optimize()
 
         if model.Status == gurobipy.GRB.OPTIMAL:
@@ -56,6 +60,12 @@ def main(args=None):
 
         elif model.Status != gurobipy.GRB.INFEASIBLE:
             print("Model was infeasible. Status: {}".format(model.Status))
+            model.computeIIS()
+            model.write('iismodel.ilp')
+            sys.exit(0)
+
+        elif model.Status != gurobipy.GRB.UNBOUNDED:
+            print("Model was unbounded. Status: {}".format(model.Status))
             sys.exit(0)
 
 
